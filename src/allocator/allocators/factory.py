@@ -4,14 +4,13 @@ from allocator.allocators.hungarian import HungarianAllocator
 
 
 class AllocatorFactory:
-	REGISTRY = {"csv": HungarianAllocator}
+	REGISTRY = {"hungarian": HungarianAllocator}
 
 	@classmethod
 	def create(cls, config: Config) -> BaseAllocator:
-		# TODO: get type from config
-		loader_type = config.loader_type
+		alloc_type = config.allocation_method
 
-		if loader_type not in cls.REGISTRY:
-			raise ValueError(f"Unknown loader type: {loader_type}")
+		if alloc_type not in cls.REGISTRY:
+			raise ValueError(f"Unknown loader type: {alloc_type}")
 
-		return cls.REGISTRY[loader_type](config)
+		return cls.REGISTRY[alloc_type](config)

@@ -26,7 +26,8 @@ def main() -> None:
 	alloc = AllocatorFactory.create(config)
 	games = alloc.allocate(players)
 
-	logger.critical(games)
+	for g in games:
+		logger.critical(g)
 
 if __name__ == "__main__":
 	setup_logging()

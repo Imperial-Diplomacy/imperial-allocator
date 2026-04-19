@@ -8,8 +8,7 @@ class LoaderFactory:
 
 	@classmethod
 	def create(cls, config: Config) -> BaseLoader:
-		# TODO: get type from config
-		loader_type = config.loader_type
+		loader_type = config.loader_method
 
 		if loader_type not in cls.REGISTRY:
 			raise ValueError(f"Unknown loader type: {loader_type}")
