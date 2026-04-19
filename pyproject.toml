@@ -83,6 +83,7 @@ init-hook = "import sys; sys.path.insert(0, '.')"
 max-line-length = 120
 
 [tool.mypy]
+ignore_missing_imports = true
 strict = true
 
 [tool.pytest.ini_options]

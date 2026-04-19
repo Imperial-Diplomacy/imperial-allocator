@@ -1,13 +1,14 @@
 from functools import wraps
+from typing import Any
 import logging
 import time
 
 logger = logging.getLogger(__name__)
 
 
-def timer(func):
+def timer(func) -> Any:
 	@wraps(func)
-	def wrapper(*args, **kwargs):
+	def wrapper(*args, **kwargs) -> Any:
 		out = f"[TIMER] started for method '{func.__name__}'"
 		logger.info(out)
 		start = time.perf_counter()

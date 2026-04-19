@@ -1,7 +1,7 @@
 import logging
 import pandas as pd
 import re
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Set
 
 from allocator import utils
 from allocator.config import Config
@@ -85,11 +85,11 @@ class CSVSignupsLoader(BaseLoader):
 		do_not_play = self._fetch_do_not_play(row, columns)
 		reputation = self.reputations.get(username, None)
 		if reputation is None:
-			default = 10
+			rep_default = 10
 			logger.warning(
-				f"Could not find a reputation value for {username}: Assuming '{default}'"
+				f"Could not find a reputation value for {username}: Assuming '{rep_default}'"
 			)
-			reputation = default
+			reputation = rep_default
 		elif reputation <= -10:
 			logger.warning(
 				f"Ignored signup for user '{username}': Below threshold to play (Reputation={reputation})"
@@ -103,11 +103,11 @@ class CSVSignupsLoader(BaseLoader):
 
 		throw_preference = row.get(THROWING_PENALISED_TEXT, None)
 		if throw_preference is None:
-			default = "I have no preference either way"
+			throw_default = "I have no preference either way"
 			logger.warning(
-				f"Could not identify a throw preference for user '{username}': Assuming '{default}'"
+				f"Could not identify a throw preference for user '{username}': Assuming '{throw_default}'"
 			)
-			throw_preference = default
+			throw_preference = throw_default
 
 		player = Player(
 			name=username,
@@ -134,10 +134,10 @@ class CSVSignupsLoader(BaseLoader):
 		)
 		return preferences, row.get(NO_PREFERENCE_TEXT) == "No Preferences"
 
-	def _fetch_do_not_play(self, row, columns):
+	def _fetch_do_not_play(self, row, columns) -> Set[str]:
 		dnp = row.get(DNP_ROW_TEXT)
 		if pd.isna(dnp):
-			return {}
+			return set()
 
 		dnp_players = {x.strip().lower() for x in dnp.split(",")}
 		return dnp_players

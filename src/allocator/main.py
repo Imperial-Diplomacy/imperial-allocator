@@ -7,7 +7,7 @@ from allocator.loaders.factory import LoaderFactory
 logger = logging.getLogger(__name__)
 
 
-def setup_logging():
+def setup_logging() -> None:
 	logging.basicConfig(
 		level=logging.INFO,
 		format="[%(asctime)s.%(msecs)03d] %(levelname)s | %(message)s",
@@ -16,7 +16,7 @@ def setup_logging():
 
 
 @utils.timer
-def main():
+def main() -> None:
 	config = Config()
 
 	loader = LoaderFactory.create(config)

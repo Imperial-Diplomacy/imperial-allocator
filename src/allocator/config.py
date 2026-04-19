@@ -10,12 +10,12 @@ class Config:
 	)
 	loader_type: str = "csv"
 
-	powers: list = field(default_factory=list)
-	RANK_TO_WEIGHTS: dict = field(default_factory=dict)
+	powers: list[str] = field(default_factory=list)
+	RANK_TO_WEIGHTS: dict[str, int] = field(default_factory=dict)
 
 	seed: int = 42
 
-	def __init__(self):
+	def __init__(self) -> None:
 		self.RANK_TO_WEIGHTS = {"1st": 36, "2nd": 25, "3rd": 16, "4th": 9, "5th": 4}
 		self.powers = [
 			"Abyssinia",

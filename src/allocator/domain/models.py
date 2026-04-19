@@ -9,11 +9,11 @@ from dataclasses import dataclass
 class Player:
 	name: str
 	timestamp: str
-	preferences: dict
+	preferences: Dict[str, int]
 	reputation: int
 	throw_pref: str
 
-	do_not_play: set[str] = field(default_factory=set)
+	do_not_play: Set[str] = field(default_factory=set)
 	no_preference: bool = False
 
 
@@ -24,12 +24,12 @@ class Game:
 	assignments: Dict[str, Optional[str]] = field(default_factory=dict)
 	scrap_players: Set[str] = field(default_factory=set)
 
-	def add_player(self, power: str, player: str):
+	def add_player(self, power: str, player: str) -> None:
 		self.assignments[power] = player
 
-	def add_scrap(self, player: str):
+	def add_scrap(self, player: str) -> None:
 		self.scrap_players.add(player)
 
 	def all_players(self) -> Set[str]:
-		players = {p for p in self.assignments.values() if p}
-		return players + self.scrap_players
+		players: Set[str] = {p for p in self.assignments.values() if p}
+		return players.union(self.scrap_players)
