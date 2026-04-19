@@ -9,6 +9,7 @@ class Config:
 		"data/Imperial Diplomacy _ Beta 2.4 Signup (Responses) - Form responses 1.csv"
 	)
 	loader_type: str = "csv"
+	allocation_method: str = "hungarian"
 
 	powers: list[str] = field(default_factory=list)
 	RANK_TO_WEIGHTS: dict[str, int] = field(default_factory=dict)

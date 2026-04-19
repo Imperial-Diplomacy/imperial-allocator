@@ -2,6 +2,7 @@ import logging
 
 from allocator import utils
 from allocator.config import Config
+from allocator.allocators.factory import AllocatorFactory
 from allocator.loaders.factory import LoaderFactory
 
 logger = logging.getLogger(__name__)
@@ -22,6 +23,10 @@ def main() -> None:
 	loader = LoaderFactory.create(config)
 	players = loader.load()
 
+	alloc = AllocatorFactory.create(config)
+	games = alloc.allocate(players)
+
+	logger.critical(games)
 
 if __name__ == "__main__":
 	setup_logging()
