@@ -1,7 +1,10 @@
 [project]
 name = "imperial-allocator"
 version = "0.1.0"
-description = "Add your description here"
+description = "Allocation algorithm for the Imperial Diplomacy Variant"
+authors = [
+    {name = "aahoughton"}
+]
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
