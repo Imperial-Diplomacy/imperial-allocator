@@ -17,6 +17,9 @@ dev = [
     "pytest>=9.0.3",
 ]
 
+[tool.uv]
+package = true
+
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [
