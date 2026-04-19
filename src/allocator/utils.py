@@ -4,6 +4,7 @@ import time
 
 logger = logging.getLogger(__name__)
 
+
 def timer(func):
 	@wraps(func)
 	def wrapper(*args, **kwargs):
@@ -17,4 +18,5 @@ def timer(func):
 		logger.info(out)
 
 		return result
+
 	return wrapper

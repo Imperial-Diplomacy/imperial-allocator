@@ -55,7 +55,9 @@ class CSVSignupsLoader(BaseLoader):
 			if player:
 				players[player.name] = player
 
-		logger.info(f"Identified {len(players)} valid signups from file: '{self.filepath}'")
+		logger.info(
+			f"Identified {len(players)} valid signups from file: '{self.filepath}'"
+		)
 		return list(players.values())
 
 	def _prepare_data(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -102,7 +104,9 @@ class CSVSignupsLoader(BaseLoader):
 		throw_preference = row.get(THROWING_PENALISED_TEXT, None)
 		if throw_preference is None:
 			default = "I have no preference either way"
-			logger.warning(f"Could not identify a throw preference for user '{username}': Assuming '{default}'")
+			logger.warning(
+				f"Could not identify a throw preference for user '{username}': Assuming '{default}'"
+			)
 			throw_preference = default
 
 		player = Player(
