@@ -3,6 +3,7 @@ import pandas as pd
 import re
 from typing import Dict, List, Optional
 
+from allocator import utils
 from allocator.config import Config
 from allocator.loaders.base import BaseLoader
 from allocator.domain.models import Player
@@ -43,6 +44,7 @@ class CSVSignupsLoader(BaseLoader):
 
 		return reputations
 
+	@utils.timer
 	def load(self) -> List[Player]:
 		df = pd.read_csv(self.filepath, skipinitialspace=True)
 		df = self._prepare_data(df)

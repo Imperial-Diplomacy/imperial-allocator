@@ -19,10 +19,6 @@ def main():
 
 	loader = LoaderFactory.create(config)
 	players = loader.load()
-	for p in players:
-		print(p)
-		if len(p.do_not_play) > 0:
-			break
 
 if __name__ == "__main__":
 	setup_logging()
