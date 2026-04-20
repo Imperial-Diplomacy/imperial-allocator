@@ -15,7 +15,7 @@ class AllocationsWriter(BaseWriter):
 			for i, g in enumerate(games):
 				f.write(f"===== Game {i} allocations =====\n")
 
-				ranked_powers = [name for name in g.assignments if g.assignments[name] is not None]
+				ranked_powers = sorted(set(g.assignments.keys()))
 
 				scrap_powers = sorted(set(self.config.powers) - set(g.assignments.keys()))
 				scrap_powers = " ".join([f"@{power}" for power in scrap_powers])
