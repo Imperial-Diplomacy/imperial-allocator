@@ -1,12 +1,13 @@
 from pathlib import Path
 from allocator.output.base import BaseWriter
 
+
 class DoNotPlayListsWriter(BaseWriter):
 	def __init__(self, config):
 		self.config = config
 
 	def write(self, games, *, prefix="") -> None:
-		out_path = Path(self.config.out_dir) 
+		out_path = Path(self.config.out_dir)
 		out_path.mkdir(exist_ok=True)
 
 		out_path = out_path / f"{prefix}donotplaylists.txt"

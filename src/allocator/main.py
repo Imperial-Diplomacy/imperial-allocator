@@ -66,6 +66,7 @@ def main() -> None:
 		for writer in writers:
 			writer.write(games, prefix=prefix)
 
+
 if __name__ == "__main__":
 	setup_logging()
 	main()

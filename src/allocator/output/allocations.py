@@ -1,12 +1,13 @@
 from pathlib import Path
 from allocator.output.base import BaseWriter
 
+
 class AllocationsWriter(BaseWriter):
 	def __init__(self, config):
 		self.config = config
 
 	def write(self, games, *, prefix="") -> None:
-		out_path = Path(self.config.out_dir) 
+		out_path = Path(self.config.out_dir)
 		out_path.mkdir(exist_ok=True)
 
 		out_path = out_path / f"{prefix}allocations.txt"
@@ -17,7 +18,9 @@ class AllocationsWriter(BaseWriter):
 
 				ranked_powers = sorted(set(g.assignments.keys()))
 
-				scrap_powers = sorted(set(self.config.powers) - set(g.assignments.keys()))
+				scrap_powers = sorted(
+					set(self.config.powers) - set(g.assignments.keys())
+				)
 				scrap_powers = " ".join([f"@{power}" for power in scrap_powers])
 
 				f.write(f"Scrap Powers: {scrap_powers}\n")

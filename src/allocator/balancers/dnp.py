@@ -6,12 +6,13 @@ from allocator.config import Config
 
 logger = logging.getLogger(__name__)
 
+
 class DNPValidator:
 	def __init__(self, config: Config, players):
 		self.config = config
 		self.players = players
 		self.rng = np.random.default_rng(config.seed)
-	
+
 	@utils.timer
 	def balance(self, games):
 		max_attempts = 25
@@ -87,7 +88,9 @@ class DNPValidator:
 		game.add_scrap(repl)
 		other_game.add_scrap(conflict_player)
 
-		logger.info(f"scrap swap '{conflict}' (Game {game.id}) ↔ '{repl.name} (Game {other_game.id})'")
+		logger.info(
+			f"scrap swap '{conflict}' (Game {game.id}) ↔ '{repl.name} (Game {other_game.id})'"
+		)
 
 	def _swap_power(self, i, game, other_game, conflict, power):
 		player = game.assignments.get(power)
@@ -111,9 +114,7 @@ class DNPValidator:
 		game.add_scrap(repl)
 		other_game.add_player(power, player)
 
-		logger.info(
-			f"Game {i}: fallback swap '{conflict}' ↔ '{repl}' ({power})"
-		)
+		logger.info(f"Game {i}: fallback swap '{conflict}' ↔ '{repl}' ({power})")
 
 	def _get_player_from_scrap(self, name: str, scraps):
 		for player in scraps:

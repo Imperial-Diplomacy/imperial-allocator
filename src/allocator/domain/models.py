@@ -8,6 +8,7 @@ from allocator.config import Config
 
 config = Config()
 
+
 @dataclass
 class Player:
 	name: str
@@ -30,6 +31,7 @@ class Player:
 			return False
 
 		return self.name == other.name
+
 
 @dataclass
 class Game:
@@ -71,6 +73,6 @@ class Game:
 	def all_do_not_play(self) -> Set[str]:
 		usernames = set()
 		for p in self.all_players():
-			usernames.update(p.do_not_play)		
+			usernames.update(p.do_not_play)
 
 		return usernames

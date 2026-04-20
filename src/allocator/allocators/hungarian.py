@@ -10,6 +10,7 @@ from allocator.allocators.base import BaseAllocator
 
 logger = logging.getLogger(__name__)
 
+
 class HungarianAllocator(BaseAllocator):
 	def __init__(self, config: Config):
 		self.config = config
@@ -20,7 +21,7 @@ class HungarianAllocator(BaseAllocator):
 	def allocate(self, players: List[Player]) -> List[Game]:
 		ranked = [p for p in players if not p.no_preference]
 		scraps = [p for p in players if p.no_preference]
-	
+
 		num_games = int(round(len(players) / len(self.powers), 0))
 		games = [Game(i) for i in range(num_games)]
 		logger.info(f"Decided on {num_games} games for {len(players)} players")
@@ -32,7 +33,7 @@ class HungarianAllocator(BaseAllocator):
 		self._assign_scrap(games, scraps)
 
 		return games
-		
+
 	def _build_matrix(self, players, num_games):
 		logger.info("Constructing power preference score matrix")
 		matrix = np.zeros((len(players), len(self.powers) * num_games))
@@ -55,7 +56,9 @@ class HungarianAllocator(BaseAllocator):
 			power = self.powers[c % len(self.powers)]
 
 			if power not in player.preferences:
-				logger.warning(f"User {player.name} was not allocated a preferred power: Reassigned as scrap")
+				logger.warning(
+					f"User {player.name} was not allocated a preferred power: Reassigned as scrap"
+				)
 				games[game_id].add_scrap(player)
 				continue
 
