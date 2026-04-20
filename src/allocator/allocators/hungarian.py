@@ -21,7 +21,7 @@ class HungarianAllocator(BaseAllocator):
 		ranked = [p for p in players if not p.no_preference]
 		scraps = [p for p in players if p.no_preference]
 	
-		num_games = round(len(players) / len(self.powers))
+		num_games = int(round(len(players) / len(self.powers), 0))
 		games = [Game(i) for i in range(num_games)]
 		logger.info(f"Decided on {num_games} games for {len(players)} players")
 
@@ -55,7 +55,7 @@ class HungarianAllocator(BaseAllocator):
 			power = self.powers[c % len(self.powers)]
 
 			if power not in player.preferences:
-				logger.warning(f"User {player.name} not allocated a preferred power: Reassigned as scrap")
+				logger.warning(f"User {player.name} was not allocated a preferred power: Reassigned as scrap")
 				games[game_id].add_scrap(player)
 				continue
 

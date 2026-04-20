@@ -8,6 +8,8 @@ class Config:
 	input_file: str = (
 		"data/Imperial Diplomacy _ Beta 2.4 Signup (Responses) - Form responses 1.csv"
 	)
+	out_dir: str = "data/b2.4"
+
 	loader_method: str = "csv"
 	allocation_method: str = "hungarian"
 
