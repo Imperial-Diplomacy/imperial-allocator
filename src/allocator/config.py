@@ -8,7 +8,7 @@ class Config:
 	input_file: str = (
 		"data/Imperial Diplomacy _ Beta 2.4 Signup (Responses) - Form responses 1.csv"
 	)
-	out_dir: str = "data/b2.4"
+	out_dir: str = "data/"
 
 	loader_method: str = "csv"
 	allocation_method: str = "hungarian"
@@ -20,6 +20,11 @@ class Config:
 	seed: int = 42
 
 	def __init__(self) -> None:
+		wave = self.input_file.split(" ")[4]
+
+		if self.out_dir == "data/":
+			self.out_dir += f"b{wave}"
+		
 		self.RANK_TO_WEIGHTS = {"1st": 81, "2nd": 49, "3rd": 36, "4th": 16, "5th": 9}
 		self.WEIGHTS_TO_RANKS = {v: k for k, v in self.RANK_TO_WEIGHTS.items()}
 		self.powers = [
