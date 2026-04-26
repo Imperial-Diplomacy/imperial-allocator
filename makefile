@@ -1,4 +1,4 @@
-APP = src.allocator
+APP = allocator
 UV = uv run
 PYTHON = python
 
